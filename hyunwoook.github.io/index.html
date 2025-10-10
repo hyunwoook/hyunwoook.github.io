@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hyunwook Kim | Academic Website</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- ===== Hero ===== -->
+  <header class="hero">
+    <img src="images/profile.png" alt="Hyunwook Kim" class="avatar" />
+    <h1>Hyunwook Kim</h1>
+    <p class="lead">B.S. Civil & Environmental Engineering (Double Major in Computer Science), Yonsei University</p>
+    <p class="lead">AI for Cementitious Materials • Computational Mechanics • Microstructure Modeling</p>
+    <div class="links">
+  <a class="btn brand" href="#projects">View Projects</a>
+  <a class="btn" href="mailto:hw_kim@yonsei.ac.kr">Email</a>
+  <a class="btn" href="https://github.com/hyunwoook" target="_blank">GitHub</a>
+  <a class="btn" href="https://linkedin.com/in/hyunwook-kim" target="_blank">LinkedIn</a>
+  <a class="btn" href="HyunwookKim_CV.pdf" target="_blank"> CV</a>
+</div>
+
+  </header>
+
+  <!-- ===== Navigation ===== -->
+  <div class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+
+  <main class="container">
+
+    <!-- ===== About Section ===== -->
+    <section id="about" class="reveal">
+      <h2>About Me</h2>
+      <div class="about-flex">
+        <div class="about-text">
+          <p>
+            I am an undergraduate researcher at <strong>Yonsei University</strong> working at the intersection of
+            <strong>AI and civil engineering</strong>. My research focuses on <strong>AI-based microstructure
+            reconstruction</strong>, <strong>computational mechanics</strong>, and <strong>data-driven material
+            analysis</strong>.
+          </p>
+          <p>
+            I have developed generative models (GANs, Diffusion Models) for cementitious microstructures and applied
+            segmentation techniques such as YOLO and UNet for CT-based image analysis. Recently, I have also started
+            exploring <strong>quantum machine learning</strong> for potential integration with generative modeling.
+          </p>
+          <pre class="demo"><code>name = "Hyunwook Kim"
+affiliation = "Yonsei University — B.S. Civil & Environmental Engineering + Computer Science"
+research_focus = [
+    "AI for Cementitious Materials", "Generative Models (GANs, Diffusion)", "Computational Mechanics","Quantum Machine Learning"
+]
+toolkit = {
+    "Python": ["NumPy", "Pandas", "PyTorch", "scikit-learn"], "Engineering": ["Revit (BIM)", "MATLAB", "Git"]
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Research Interests ===== -->
+    <section id="research" class="reveal">
+      <h2>Research Interests</h2>
+      <div class="research-grid">
+        <div class="research-card">
+          <img src="images/generative.png" alt="Generative Models" class="research-img" />
+          <h3>Generative Models</h3>
+          <p>
+            Exploring GANs and Diffusion Models for realistic reconstruction of cementitious microstructures, enabling
+            property evaluation and data augmentation for limited experimental datasets.
+          </p>
+        </div>
+        <div class="research-card">
+          <img src="images/segmentation.png" alt="Segmentation" class="research-img" />
+          <h3>Segmentation</h3>
+          <p>
+            Developing YOLO and UNet pipelines for automated segmentation of CT images in microstructural analysis,
+            improving reproducibility and automation.
+          </p>
+        </div>
+        <div class="research-card">
+          <img src="images/quantum.png" alt="Quantum ML" class="research-img" />
+          <h3>Quantum Machine Learning</h3>
+          <p>
+            Applying quantum computing approaches to generative and learning tasks, studying quantum-enhanced
+            architectures for material data modeling and analysis.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Research Experience ===== -->
+    <section id="experience" class="reveal">
+  <h2>Research Experience</h2>
+
+  <div class="exp-list">
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <span class="period">Mar 2025 – Present</span><br>
+        <strong>Undergraduate Research Intern</strong>, Structural Analysis Lab, Yonsei University, Korea
+      </div>
+      <p>
+        Developed AI-based methods for cementitious microstructure reconstruction using GANs and Diffusion Models,
+        generating virtual specimens that reflect real CT imaging data and training YOLO models for automated
+        segmentation and accuracy evaluation.
+      </p>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <span class="period">Spring 2025</span><br>
+        <strong>Research Project:</strong> Optimization of Electric Vehicle Charging Station Locations, Yonsei University, Korea
+      </div>
+      <p>
+        Built optimization models to determine cost-effective EV charging station placements in Jeju and conducted
+        economic analyses using Net Present Value (NPV) and Annualized Value (AV) methods to evaluate user benefits
+        from reduced waiting times at charging stations.
+      </p>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <span class="period">Fall 2024</span><br>
+        <strong>Bridge Design with BIM</strong>, Yonsei University, Korea
+      </div>
+      <p>
+        Designed a parametric truss bridge using Revit for structural and material quantity analysis, applied BIM
+        workflows to visualize internal components, and collaborated in a multidisciplinary team to strengthen project
+        management and leadership skills.
+      </p>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <span class="period">Jan 2024 – May 2024</span><br>
+        <strong>Research Intern</strong>, Regional Risk and Analysis Lab, University of Illinois Urbana–Champaign (UIUC), USA
+      </div>
+      <p>
+        Conducted research on regional risk modeling and infrastructure resilience, applying data-driven approaches
+        to evaluate environmental and civil risk factors and assisting in quantitative risk analysis for large-scale
+        infrastructure systems.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section id="honors" class="reveal">
+  <h2>Honors & Awards</h2>
+  <div class="exp-list">
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <span class="period">Feb 2021, Aug 2023, Feb 2025</span><br>
+        <strong>High Honor Award & Scholarship (Top 3%)</strong>, Yonsei University
+      </div>
+      <p>
+        Merit-based scholarship awarded for outstanding academic achievement across three semesters,
+        recognizing consistent excellence in Civil & Environmental Engineering studies.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section id="certifications" class="reveal">
+  <h2>Certifications</h2>
+  <div class="exp-list">
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <span class="period">2025</span><br>
+        <strong>Professional Engineer in Civil Engineering</strong>, Korean National License
+      </div>
+      <p>
+        National certification demonstrating technical competence in structural design and civil
+        engineering practice, qualifying for professional engineering responsibilities in Korea.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section id="languages" class="reveal">
+  <h2>Languages</h2>
+  <div class="exp-list">
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <img src="https://flagcdn.com/w40/us.png" alt="US flag" class="flag-img">
+        <strong>English</strong>
+      </div>
+      <p>
+        TOEIC 980; OPIc AL — Highly proficient in both academic and professional communication.
+      </p>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <img src="https://flagcdn.com/w40/es.png" alt="Spain flag" class="flag-img">
+        <strong>Spanish</strong>
+      </div>
+      <p>
+        DELE B1 (Intermediate) — Capable of everyday conversation and professional comprehension.
+      </p>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <img src="https://flagcdn.com/w40/kr.png" alt="Korea flag" class="flag-img">
+        <strong>Korean</strong>
+      </div>
+      <p>
+        Native proficiency — Fluent in academic writing, research, and professional presentations.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+    <!-- ===== Contact ===== -->
+    <section id="contact" class="reveal">
+      <h2>Contact</h2>
+      <p><strong>Email:</strong> <a href="mailto:hw_kim@yonsei.ac.kr">hw_kim@yonsei.ac.kr</a></p>
+      <p><strong>Links:</strong>
+        <a href="https://github.com/hyunwoook" target="_blank">GitHub</a> ·
+        <a href="https://linkedin.com/in/hyunwook-kim" target="_blank">LinkedIn</a>
+      </p>
+    </section>
+  </main>
+
+  <footer>© 2025 Hyunwook Kim — Academic Website</footer>
+  <button id="toTop" aria-label="Back to top">↑ Top</button>
+
+  <script src="script.js"></script>
+</body>
+</html>

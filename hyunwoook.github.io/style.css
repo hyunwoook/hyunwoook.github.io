@@ -1,0 +1,313 @@
+/* ===== Root Variables (Yonsei Theme) ===== */
+:root {
+  --yonsei-blue: #002F6C;
+  --yonsei-light: #00A2FF;
+  --bg: #F7F9FC;
+  --text: #1F2937;
+  --muted: #4B5563;
+  --panel: #FFFFFF;
+  --border: #E5E7EB;
+  --accent: #E0ECFF;
+  --code-bg: #0B1020;
+}
+
+[data-theme="dark"] {
+  --bg: #0B1020;
+  --text: #FFFFFF;
+  --muted: #C7D2FE;
+  --panel: #0F172A;
+  --border: #1E293B;
+  --accent: #1A2A4B;
+  --code-bg: #1E293B;
+}
+
+/* ===== Global Styles ===== */
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.7;
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3 {
+  color: var(--yonsei-blue);
+  font-weight: 700;
+}
+
+p {
+  color: var(--muted);
+}
+
+/* ===== Hero ===== */
+.hero {
+  text-align: center;
+  padding: 100px 20px 80px;
+  background: linear-gradient(135deg, rgba(0,47,108,0.12), rgba(0,162,255,0.12));
+  border-bottom: 1px solid var(--border);
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  margin-bottom: 10px;
+}
+
+.hero p.lead {
+  margin: 8px 0;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.avatar {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border: 3px solid #fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,.15);
+  margin-bottom: 18px;
+  border-radius: 0; /* 네모형 */
+}
+
+/* ===== Navigation ===== */
+.nav {
+  position: sticky;
+  top: 0;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  z-index: 10;
+}
+
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  padding: 10px 16px;
+}
+
+.nav a {
+  color: var(--text);
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.nav a:hover {
+  background: var(--accent);
+  color: var(--yonsei-blue);
+}
+
+/* ===== Layout ===== */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 16px;
+}
+
+section {
+  margin-bottom: 80px;
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 24px;
+  text-align: left;
+  color: var(--yonsei-blue);
+}
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 16px;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform .2s ease, box-shadow .3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.btn.brand {
+  background: linear-gradient(135deg, var(--yonsei-blue), var(--yonsei-light));
+  color: #fff;
+  border: none;
+}
+
+/* ===== About Section ===== */
+.about-flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
+}
+
+.about-text {
+  flex: 1;
+  min-width: 300px;
+}
+
+pre.demo {
+  background: var(--code-bg);
+  color: #E5E7EB;
+  padding: 14px 16px;
+  border-radius: 12px;
+  overflow-x: auto;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.95rem;
+  margin-top: 24px;
+}
+
+/* ===== Research Interests ===== */
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 24px;
+}
+
+.research-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.research-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+}
+
+.research-img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 0;
+  margin-bottom: 14px;
+}
+
+@media (max-width: 900px) {
+  .research-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .research-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== Research Experience ===== */
+.exp-list {
+  display: grid;
+  gap: 32px;
+}
+
+.exp-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* ✅ hover 시 살짝 떠오르도록 */
+.exp-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+}
+
+.exp-header {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.exp-header .period {
+  font-weight: 700;
+  color: var(--yonsei-light);
+}
+
+.exp-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* ===== Contact Section ===== */
+#contact p a {
+  color: var(--yonsei-blue);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+#contact p a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Footer ===== */
+footer {
+  text-align: center;
+  padding: 40px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+}
+
+/* ===== Reveal Animation ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Back to Top ===== */
+#toTop {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  cursor: pointer;
+  display: none;
+}
+
+#toTop.show {
+  display: inline-flex;
+}
+/* Section heading consistency */
+#honors h2, #certifications h2 {
+  margin-bottom: 28px;
+}
+/* ===== Languages Section Flags ===== */
+.flag {
+  font-size: 1.6rem;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+#languages .exp-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
