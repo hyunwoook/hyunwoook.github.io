@@ -1,0 +1,111 @@
+body {
+  font-family: "Noto Sans KR", "Inter", "Georgia", serif;
+  background-color: #fdfdfd;
+  color: #2b2b2b;
+  line-height: 1.85;
+  margin: 0;
+}
+
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+header {
+  text-align: center;
+  padding: 4rem 1rem 2rem;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+h1 {
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+h2 {
+  color: #1f1f1f;
+  margin-top: 3rem;
+  border-left: 4px solid #e67e22;
+  padding-left: 0.6rem;
+  font-weight: 600;
+}
+
+.meta {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.links a {
+  color: #b15b00;
+  text-decoration: none;
+}
+.links a:hover {
+  text-decoration: underline;
+}
+
+article {
+  padding: 3rem 0;
+}
+
+p {
+  font-size: 1.05rem;
+  color: #2b2b2b;
+  margin: 1rem 0;
+}
+
+strong {
+  color: #111;
+}
+
+figure {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+figure img {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+}
+
+figcaption {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.6rem;
+}
+
+blockquote {
+  font-style: italic;
+  border-left: 4px solid #e67e22;
+  padding-left: 1rem;
+  background: #fcfcfc;
+  color: #444;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+pre, code {
+  background: #f4f4f4;
+  padding: 0.8rem;
+  border-radius: 8px;
+  display: block;
+  overflow-x: auto;
+  font-family: "Fira Code", monospace;
+  color: #333;
+}
+
+.math-block {
+  text-align: center;
+  font-size: 1.05rem;
+  margin: 1.5rem 0;
+  color: #1f1f1f;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid #e3e3e3;
+  color: #777;
+  font-size: 0.9rem;
+}

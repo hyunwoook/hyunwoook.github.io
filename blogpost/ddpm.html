@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>From Noise to Art: Understanding DDPM</title>
+  <link rel="stylesheet" href="ddpm.css" />
+
+  <!-- MathJax for rendering LaTeX equations -->
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+
+<body>
+
+  <header>
+    <div class="container">
+      <h1>From Noise to Art: Understanding Denoising Diffusion Probabilistic Models (DDPM)</h1>
+      <p class="meta"><strong>By Hyunwook Kim</strong> · October 2025</p>
+      <p class="links">
+        📄 <a href="https://arxiv.org/abs/2006.11239">Original Paper</a> &nbsp;|&nbsp;
+        💻 <a href="https://github.com/hojonathanho/diffusion">Official Code</a>
+      </p>
+    </div>
+  </header>
+
+  <main class="container">
+    <article>
+      <figure style="text-align:center; margin-top: 25px;">
+      <img src="images/start.gif" alt="DDPM animation" >
+      <figcaption style="font-size: 0.9em; color: #666;">Animated visualization of diffusion — from noise to image.</figcaption>
+    </figure>
+
+      <!-- INTRO -->
+      <section>
+        <h2>The Intuition Behind Diffusion</h2>
+        <p>
+          Imagine leaving a cup of coffee on your desk for hours —  
+          the rich aroma slowly disappears into the air.  
+          That’s <em>diffusion</em>: order turning into randomness.
+        </p>
+
+        <p>
+          Now imagine reversing that process —  
+          taking scattered coffee aroma molecules and bringing them back  
+          into a perfectly brewed cup again.  
+          That’s what <strong>Diffusion Models</strong> try to do.
+        </p>
+
+        <blockquote>
+          “Diffusion models learn how to reverse the natural process of disorder —  
+          transforming pure noise back into meaningful data.”
+        </blockquote>
+
+        <figure>
+          <img src="images/coffee_diffusion.png" alt="Diffusion as aroma spreading analogy">
+          <figcaption>Just like coffee aroma diffuses into air, images can dissolve into noise — and be brought back.</figcaption>
+        </figure>
+      </section>
+
+      <!-- WHY -->
+      <section>
+        <h2>Why Diffusion Models?</h2>
+        <p>
+          Before DDPMs, <strong>GANs</strong> dominated generative modeling.  
+          But GANs often collapsed — producing only limited patterns or unstable results.
+        </p>
+        <p>
+          DDPMs replaced competition with calm reconstruction.  
+          Instead of two networks fighting (like artist vs critic), diffusion models quietly learn to undo noise.
+        </p>
+
+        <figure>
+          <img src="images/ddpm_vs_gan.png" alt="GAN vs DDPM comparison">
+          <figcaption>GANs compete adversarially; DDPMs reconstruct through patient denoising.</figcaption>
+        </figure>
+      </section>
+
+      <!-- FORWARD -->
+      <section>
+        <h2>The Forward Process: Adding Noise</h2>
+        <p>
+          The forward process gradually corrupts an image with Gaussian noise.  
+          Each step slightly blurs details until all structure disappears.
+        </p>
+
+        <p class="math-block">
+          $$ q(x_t | x_{t-1}) = \mathcal{N}(x_t; \sqrt{1 - \beta_t} \, x_{t-1}, \, \beta_t I) $$
+        </p>
+
+        <p>
+          After $T$ steps, the image becomes nearly pure noise:
+          $$ q(x_T | x_0) = \mathcal{N}(x_T; \sqrt{\bar{\alpha}_T} x_0, (1 - \bar{\alpha}_T) I) $$
+        </p>
+
+        <figure>
+          <img src="images/noise_process.png" alt="Forward diffusion illustration">
+          <figcaption>Step-by-step noise addition until the data becomes white noise.</figcaption>
+        </figure>
+
+        <p><strong>Analogy:</strong>  
+          Imagine repeatedly photocopying a photo —  
+          each time, tiny details vanish until all that’s left is static.  
+          The model’s job is to learn how to reverse that photocopying process.
+        </p>
+      </section>
+
+      <!-- REVERSE -->
+      <section>
+        <h2>The Reverse Process: Removing Noise</h2>
+        <p>
+          The reverse process tries to reconstruct $x_{t-1}$ from noisy $x_t$.  
+          It’s also Gaussian:
+        </p>
+
+        <p class="math-block">
+          $$ p_\theta(x_{t-1} | x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\theta(x_t, t)) $$
+        </p>
+
+        <p>
+          During training, the model learns to predict the noise $\epsilon$ added at each step:
+        </p>
+
+        <p class="math-block">
+          $$ L_{\text{simple}} = \mathbb{E}_{t, x_0, \epsilon} \big[ \| \epsilon - \epsilon_\theta(x_t, t) \|^2 \big] $$
+        </p>
+
+        <figure>
+          <img src="images/reverse_process.png" alt="Reverse process reconstruction">
+          <figcaption>Learning to denoise: step-by-step reconstruction of structure from noise.</figcaption>
+        </figure>
+
+        <p><strong>Example:</strong>  
+          Start with pure noise → after 1000 denoising steps → a clear image of a cat appears.  
+          Each step is like an artist softly erasing randomness from a blurred canvas.
+        </p>
+      </section>
+
+      <!-- MATH -->
+      <section>
+        <h2>The Mathematics of Learning to Denoise</h2>
+        <p>
+          The full variational objective minimizes the KL divergence  
+          between the true posterior and the model’s reverse process:
+        </p>
+
+        <p class="math-block">
+          $$ L_{VLB} = \mathbb{E}_q \Big[ D_{KL}(q(x_T|x_0) || p(x_T)) 
+          + \sum_{t>1} D_{KL}(q(x_{t-1}|x_t, x_0) || p_\theta(x_{t-1}|x_t)) - \log p_\theta(x_0|x_1) \Big] $$
+        </p>
+
+        <p>
+          In practice, this simplifies to the denoising loss —  
+          where the model predicts the noise directly.
+        </p>
+
+        <!-- <figure>
+          <img src="images/formula_diagram.png" alt="DDPM variational structure">
+          <figcaption>DDPM training objective derived from variational inference.</figcaption>
+        </figure> -->
+      </section>
+
+      <!-- EXAMPLES -->
+      <section>
+        <h2>Examples of Generated Images</h2>
+        <p>
+          Below are examples from the original DDPM paper.  
+          Each sample starts from random Gaussian noise and gradually takes shape.
+        </p>
+
+        <figure>
+          <img src="images/ddpm_samples.png" alt="Generated samples by DDPM">
+          <figcaption>DDPM-generated samples on CIFAR-10 and LSUN Bedroom.</figcaption>
+        </figure>
+      </section>
+
+      <!-- VISUALIZATION -->
+      <section>
+        <h2>Visualizing the Generation Process</h2>
+        <p>
+          The evolution from noise to image is progressive.  
+          Each step adds a bit more structure and detail — much like focusing a blurry photo over time.
+        </p>
+
+        <figure>
+          <img src="images/progressive_refinement.gif" alt="Progressive refinement">
+          <figcaption>From random noise → coarse outline → final detailed image.</figcaption>
+        </figure>
+      </section>
+
+      <!-- LEGACY -->
+      <section>
+        <h2>The Legacy of Diffusion Models</h2>
+        <p>
+          DDPM inspired a new family of models that continue to shape modern AI:
+        </p>
+        <ul>
+          <li>Improved DDPM (Nichol & Dhariwal, 2021)</li>
+          <li>DDIM (Song et al., 2021) — deterministic sampling</li>
+          <li>Stable Diffusion (Rombach et al., 2022) — latent-space generation</li>
+          <li>Text-to-Image models — DALL·E 3, Imagen, Midjourney</li>
+        </ul>
+
+        <!-- <figure>
+          <img src="images/ddpm_evolution.png" alt="Evolution of diffusion models">
+          <figcaption>From DDPM to Stable Diffusion — the evolution of refinement.</figcaption>
+        </figure> -->
+      </section>
+
+      <!-- REFLECTION -->
+      <section>
+        <h2>Reflection</h2>
+        <blockquote>
+          “GANs taught machines to dream.  
+          Diffusion models taught them to refine those dreams — patiently, one noise particle at a time.”
+        </blockquote>
+        <p>
+          Diffusion models show that creativity can emerge  
+          not from conflict or chaos, but from quiet, iterative reconstruction.
+        </p>
+      </section>
+
+    </article>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>✏️ Written by <strong>Hyunwook Kim</strong> · 2025</p>
+    </div>
+  </footer>
+
+  <script src="ddpm.js"></script>
+</body>
+</html>
